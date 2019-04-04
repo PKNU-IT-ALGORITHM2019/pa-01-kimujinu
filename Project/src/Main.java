@@ -15,13 +15,13 @@ public class Main {
 	
 	static int Begin;
 	static int End;
-	static int size=0; //´Ü¾î¼ö
+	static int size=0; //ë‹¨ì–´ìˆ˜
 	static int data=2000000;
 	
-	static int[] realdata =new int[data]; //Ãâ·ÂÇÒ º¯¼ö¹è¿­ ¼±¾ğ
-	static String[] string = new String [data]; //´Ü¾î Àü¿ªº¯¼ö¹è¿­ ¼±¾ğ
-	static String[] type = new String [data];	//Ç°»ç Àü¿ªº¯¼ö¹è¿­ ¼±¾ğ
-	static String[] detail = new String [data];	//¼³¸í Àü¿ªº¯¼ö¹è¿­ ¼±¾ğ  
+	static int[] realdata =new int[data]; //ì¶œë ¥í•  ë³€ìˆ˜ë°°ì—´ ì„ ì–¸
+	static String[] string = new String [data]; //ë‹¨ì–´ ì „ì—­ë³€ìˆ˜ë°°ì—´ ì„ ì–¸
+	static String[] type = new String [data];	//í’ˆì‚¬ ì „ì—­ë³€ìˆ˜ë°°ì—´ ì„ ì–¸
+	static String[] detail = new String [data];	//ì„¤ëª… ì „ì—­ë³€ìˆ˜ë°°ì—´ ì„ ì–¸  
 
 
 	public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class Main {
 		}
 	 }
 	}
-	 public static void searching(int check, String words) { //´Ü¾î Ã£´Â ¸Ş¼Òµå¸¦ ÇÏ´ÙÇÏ´Ù ¸øÇØ°¡Áö±¸...ÆÇµµ¶óÀÇ»óÀÚ º¸°í Á¦ÃâÇÕ´Ï´Ù..¤ĞÀÌÇØ´ÂÇŞ½À´Ï´Ù
+	 public static void searching(int check, String words) { 
 			
 			if (check < 0) {
 				System.out.println("Not found.");
@@ -63,8 +63,8 @@ public class Main {
 				while(true) {
 					if(check < 0) 
 						break;
-					if(string[check].compareToIgnoreCase(words) == 0) //Ã£´Â ´Ü¾î°¡ string¹è¿­¾ÈÀÇ ´Ü¾î¿Í °°´Ù¸é 
-						realdata[m++] = check; //realdata¹è¿­¾È¿¡ ÀúÀåÀ» ÇØÁØ´Ù.
+					if(string[check].compareToIgnoreCase(words) == 0) //ì°¾ëŠ” ë‹¨ì–´ê°€ stringë°°ì—´ì•ˆì˜ ë‹¨ì–´ì™€ ê°™ë‹¤ë©´ 
+						realdata[m++] = check; //realdataë°°ì—´ì•ˆì— ì €ì¥ì„ í•´ì¤€ë‹¤.
 					check--;
 				}
 				check = check + 1;
@@ -77,23 +77,23 @@ public class Main {
 				}
 				System.out.println("Found " + m + " items.");
 				for(int j = 0; j < m; j++)
-					System.out.println(string[realdata[j]] + " " + type[realdata[j]] + " " + detail[realdata[j]]); //Ãâ·Â
+					System.out.println(string[realdata[j]] + " " + type[realdata[j]] + " " + detail[realdata[j]]); //ì¶œë ¥
 			}
 		}
 	public static void read(String file) {
 	        try {
 	        	Scanner read = new Scanner(new File(file));
-	            while (read.hasNext()) {// booleanÅ¸ÀÔÃ³·³ ±× °ªÀÌ ÀÖ´ÂÁö È®ÀÎÇÔ.
+	            while (read.hasNext()) {// booleaníƒ€ì…ì²˜ëŸ¼ ê·¸ ê°’ì´ ìˆëŠ”ì§€ í™•ì¸í•¨.
 	            	String line = null;
 	            	line = read.nextLine();
-	            	int end_point = line.indexOf(")"); //°ıÈ£¸¦ ±âÁØÀ¸·Î Ç°»ç¸¦ ³ª´®
+	            	int end_point = line.indexOf(")"); //ê´„í˜¸ë¥¼ ê¸°ì¤€ìœ¼ë¡œ í’ˆì‚¬ë¥¼ ë‚˜ëˆ”
 	            	int start_point = line.indexOf("(");// ""
 	            	if(!line.equals("")) { 
-					string[size] = line.substring(0,start_point-1); //"("ÀÌÀüÀÇ ¹®ÀÚ¿­(´Ü¾î)À» string¹è¿­¿¡ ´ëÀÔÇÔ
-					type[size] = line.substring(start_point,end_point+1); // "() "°ıÈ£ ¾ÈÀÇ ¹®ÀÚ¿­À» ¹è¿­¿¡ ´ëÀÔ
-					detail[size] = line.substring(end_point+1);//³ª¸ÓÁö ´ëÀÔ
+					string[size] = line.substring(0,start_point-1); //"("ì´ì „ì˜ ë¬¸ìì—´(ë‹¨ì–´)ì„ stringë°°ì—´ì— ëŒ€ì…í•¨
+					type[size] = line.substring(start_point,end_point+1); // "() "ê´„í˜¸ ì•ˆì˜ ë¬¸ìì—´ì„ ë°°ì—´ì— ëŒ€ì…
+					detail[size] = line.substring(end_point+1);//ë‚˜ë¨¸ì§€ ëŒ€ì…
 					System.out.println(string[size]);
-	              	size = size + 1; //´Ü¾î¼ö
+	              	size = size + 1; //ë‹¨ì–´ìˆ˜
 	            	}
 	            }
 	            read.close();
@@ -109,7 +109,7 @@ public class Main {
 			if(end < start){
 				 return -1;
 			}
-			if(string[middle].compareToIgnoreCase(word)>0){ //´ë¼Ò¹®ÀÚ ¹«½Ã ¹®ÀÚ¿­ ºñ±³
+			if(string[middle].compareToIgnoreCase(word)>0){ //ëŒ€ì†Œë¬¸ì ë¬´ì‹œ ë¬¸ìì—´ ë¹„êµ
 				return find(start,middle-1,word);
 			}
 			else if (string[middle].equalsIgnoreCase(word)){
